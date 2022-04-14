@@ -15,14 +15,27 @@
 </head>
 <body>
     <div class="top">
-      <img src="./image/logo.jpg" /><ion-icon name="people"></ion-icon>
+      <img src="./image/logo.jpg" /><ion-icon onclick="openMenu()" name="people"></ion-icon>
     </div>
     <div class="conteiner"></div>
     <div class="bottom">
       <div class="input-box">
         <input type="text" value="Escreva aqui..."/>
       </div>
-      <button><ion-icon name="paper-plane-outline"></ion-icon></button>
+      <ion-icon name="paper-plane-outline"></ion-icon>
+    </div>
+    <div onclick="openMenu()" class="participants hidden">
+      <div class="menu">
+        <div class="box contacts"><p>Escolha um contato para enviar a mensagem:</p></div>
+        <div class="select-conteiner">
+          <div class="select contact"><ion-icon name="people"></ion-icon><p>Todos</p></div>
+        </div>
+        <div class="box visibility"><p>Escolha a visibilidade:</p></div>
+        <div class="select-conteiner">
+          <div class="select visibility"><ion-icon name="lock-open"></ion-icon><p>Público</p></div>
+          <div class="select visibility"><ion-icon name="lock-closed"></ion-icon><p>Reservadamente</p></div>
+        </div>
+      </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="scripts.js"></script>

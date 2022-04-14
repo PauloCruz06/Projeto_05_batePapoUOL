@@ -75,18 +75,86 @@ img{
     border: none;
 }
 
-.bottom > button{
-    width: auto;
-    height: auto;
+.bottom > ion-icon{
+    width: 26px;
+    height: 26px;
     margin-left: 14px;
     margin-right: 18px;
-    background: none;
-    border: none;
 }
 
-button > ion-icon{
-    width: 22px;
-    height: 22px;
+.participants{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    z-index: 2;
+}
+
+.menu{
+    width: 100%;
+    height: 100%;
+    margin-left: 116px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #FFFFFF;
+}
+
+.box{
+    width: 100%;
+    height: 84px;
+    background: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'roboto';
+    font-weight: 700;
+    font-size: 16px;
+    text-align: center;
+    color: #000000;
+}
+
+.select-conteiner{
+    width: 100%;
+    height: auto;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-left: 22px;
+}
+
+.select{
+    width: 100%;
+    height: 36px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.select ion-icon{
+    width: 23.5px;
+    height: 23.5px;
+}
+
+.select p{
+    width: 100%;
+    height: 100%;
+    margin-right: 16px;
+    margin-left: 8px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    color: #000000;
+    font-family: 'roboto';
+    font-weight: 400;
+    font-size: 16px;
 }
 
 .hidden{
