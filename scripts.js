@@ -1,27 +1,54 @@
 const messageDefault = {time: "(12:22:50)", name: "Usuário", message: "Olá, como vai? Essa é uma mensagem padrão", receiver: "Todos"};
-let user = {time: "", name: "", message: "Olá", receiver: "Todos"};
+let user = {name: ""};
 login();
 
 //funçôes de login
 
 function login (){
     const promise = axios.get("https://mock-api.driven.com.br/api/v6/uol/participants");
-    promise.then(console.log(promise));
     promise.then(userLogin);
     promise.catch(serverError);
 }
 
 function userLogin(){
     user = {name: prompt("Digite o seu nome")};
-    const promise = axios.post("https://mock-api.driven.com.br/api/v6/uol/participants", user);
-    promise.then(verparticipantes);
-    promise.catch(userError);
+    const promiseLogin = axios.post("https://mock-api.driven.com.br/api/v6/uol/participants", user);
+    promiseLogin.then(getParticipants);
+    promiseLogin.then(setInterval(userStatus, 4000));
+    promiseLogin.then(setInterval(getMessages, 2000));
+    promiseLogin.catch(userError);
 }
 
-function verparticipantes(){
-    const promise = axios.get("https://mock-api.driven.com.br/api/v6/uol/participants");
-    promise.then(console.log(promise));
+function getParticipants(){
+    const promisePart = axios.get("https://mock-api.driven.com.br/api/v6/uol/participants");
+    promisePart.then(console.log(promisePart));
+    promisePart.then(setParticipants);
 }
+
+function setParticipants(part){
+    console.log(part.data);
+}
+
+function userStatus(){
+    axios.post("https://mock-api.driven.com.br/api/v6/uol/status", user);
+    console.log("Status: Ok");
+}
+
+
+//funções de mensagem
+
+function getMessages(){
+    const promiseGetMens = axios.get("https://mock-api.driven.com.br/api/v6/uol/messages");
+    promiseGetMens.then(console.log(promiseGetMens));
+    promiseGetMens.then(setMessages);
+}
+
+function setMessages(mess){
+    console.log(mess.data);
+}
+
+
+//funçôes de erro
 
 function serverError(error){
     if(error.response.status === 500){
@@ -32,10 +59,7 @@ function serverError(error){
 
 function userError(error){
     if(error.response.status === 400){
-        alert("Não foi possível reconhecer este usuário");
-        userLogin();
-    }else if(error.response.status === 409){
-        alert("O nome de usuário já está sendo usado na sala");
+        alert("Não foi possível reconhecer o nome de usuário ou já está existente na sala");
         userLogin();
     }else if(error.response.status === 422){
         alert("Nome de usuário inválido");
