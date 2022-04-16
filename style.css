@@ -66,6 +66,14 @@ img{
     color: #AAAAAA;
 }
 
+.type-status{
+    background-color: #DCDCDC;
+}
+
+.type-private{
+    background-color: #FFDEDE;
+}
+
 .bottom{
     width: 100%;
     height: 80px;
