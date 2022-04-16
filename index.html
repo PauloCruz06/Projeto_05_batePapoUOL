@@ -22,20 +22,22 @@
     </div>
     <div class="bottom">
       <div class="input-box">
-        <input type="text" value="Escreva aqui..."/>
+        <input onfocus="getinput(this)" type="text" value="Escreva aqui..."/>
+        <div class="subtittle hidden"></div>
       </div>
       <ion-icon onclick="sendMessage()" name="paper-plane-outline"></ion-icon>
     </div>
-    <div onclick="openMenu()" class="participants hidden">
+    <div class="participants hidden">
+      <div onclick="openMenu()" class="superbackground"></div>
       <div class="menu">
         <div class="box contacts"><p>Escolha um contato para enviar a mensagem:</p></div>
         <div class="select-conteiner">
-          <div class="select contact"><ion-icon name="people"></ion-icon><p>Todos<ion-icon name="checkmark-sharp"></ion-icon></p></div>
+          <div class="select contact"><ion-icon name="people"></ion-icon><p name="Todos">Todos<ion-icon class="check" name="checkmark-sharp"></ion-icon></p></div>
         </div>
-        <div class="box visibility"><p>Escolha a visibilidade:</p></div>
+        <div class="box visibilitys"><p>Escolha a visibilidade:</p></div>
         <div class="select-conteiner">
-          <div class="select visibility"><ion-icon name="lock-open"></ion-icon><p>Público<ion-icon name="checkmark-sharp"></ion-icon></p></div>
-          <div class="select visibility"><ion-icon name="lock-closed"></ion-icon><p>Reservadamente</p></div>
+          <div class="select visibility"><ion-icon name="lock-open"></ion-icon><p name="message">Público<ion-icon class="check" name="checkmark-sharp"></ion-icon></p></div>
+         <!-- <div class="select visibility"><ion-icon name="lock-closed"></ion-icon><p onclick="selectvisibility(this)" name="private_message">Reservadamente<ion-icon class="hidden" name="checkmark-sharp"></ion-icon></p></div>-->
         </div>
       </div>
     </div>

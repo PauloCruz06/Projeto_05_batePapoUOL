@@ -111,6 +111,19 @@ img{
     border: none;
 }
 
+.input-box :last-child{
+    width: 250px;
+    height: 16px;
+    position: fixed;
+    bottom: 5px;
+    left: 16px;
+    background: none;
+    font-family: 'roboto';
+    font-weight: 400;
+    font-size: 14px;
+    color: #AAAAAA;
+}
+
 .bottom > ion-icon{
     width: 26px;
     height: 26px;
@@ -122,11 +135,20 @@ img{
     width: 100%;
     height: 100%;
     display: flex;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: none;
     position: fixed;
     top: 0px;
     right: 0px;
-    z-index: 2;
+}
+
+.superbackground{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 1;
 }
 
 .menu{
@@ -137,6 +159,7 @@ img{
     flex-direction: column;
     align-items: center;
     background-color: #FFFFFF;
+    z-index: 2;
 }
 
 .box{
