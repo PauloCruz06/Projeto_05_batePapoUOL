@@ -112,7 +112,7 @@ img{
 }
 
 .input-box :last-child{
-    width: 250px;
+    width: auto;
     height: 16px;
     position: fixed;
     bottom: 5px;
@@ -224,4 +224,8 @@ p > ion-icon{
 
 .hidden{
     display: none;
+}
+
+.scroll-lock{
+    overflow: hidden;
 }

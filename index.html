@@ -22,7 +22,7 @@
     </div>
     <div class="bottom">
       <div class="input-box">
-        <input onfocus="getinput(this)" type="text" value="Escreva aqui..."/>
+        <input onfocus="getinputFocus(this)" onblur="getinputBlur(this)" type="text" value="Escreva aqui..."/>
         <div class="subtittle hidden"></div>
       </div>
       <ion-icon onclick="sendMessage()" name="paper-plane-outline"></ion-icon>

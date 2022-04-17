@@ -30,7 +30,7 @@ function getParticipants(){
 
 function setParticipants(part){
     //console.log(part.data);
-    document.querySelector(".menu :nth-child(2)").innerHTML = `<div class="select contact"><ion-icon name="people"></ion-icon><p onclick="selectcontact(this)" name="Todos">Todos<ion-icon class="check" name="checkmark-sharp"></ion-icon></p></div>`
+    document.querySelector(".menu :nth-child(2)").innerHTML = `<div class="select contact"><ion-icon name="people"></ion-icon><p onclick="selectcontact(this)" name="Todos">Todos<ion-icon class="hidden" name="checkmark-sharp"></ion-icon></p></div>`
     for(let i=0; i<part.data.length; i++){
         document.querySelector(".menu :nth-child(2)").innerHTML += `<div class="select contact"><ion-icon name="people"></ion-icon><p onclick="selectcontact(this)" name="${part.data[i].name}">${part.data[i].name}<ion-icon class="hidden" name="checkmark-sharp"></ion-icon></p></div>`
     }
@@ -95,12 +95,23 @@ function userError(error){
     return;
 }
 
+function messageError(){
+    alert("Não foi possível enviar essa mensagem, entre novamente");
+    window.location.reload();
+}
+
 
 //funcionalidades do layout
 
 function sendMessage(){
-    getinput(document.querySelector("input"));
+    if(user.text === ""){
+        alert("Digite alguma coisa!");
+        return;
+    }
+    document.querySelector(".input-box").innerHTML = '<input onfocus="getinputFocus(this)" onblur="getinputBlur(this)" type="text" value="Escreva aqui..."/><div class="subtittle hidden"></div>'
     const promiseSend = axios.post("https://mock-api.driven.com.br/api/v6/uol/messages", user);
+    promiseSend.then();
+    promiseSend.catch();
     const box = document.querySelector(".conteiner");
     if(user.type === "message"){
         box.innerHTML += `<div class="message"><p><light>${user.time}</light> <b>${user.from}</b> para <b>${user.to}</b>: ${user.text}</p></div>`
@@ -113,29 +124,36 @@ function openMenu(){
     const menu = document.querySelector(".participants");
     if(menu.classList.contains("hidden")){
         menu.classList.remove("hidden");
+        document.querySelector("body").classList.add("scroll-lock");
     }else{
         menu.classList.add("hidden");
+        document.querySelector("body").classList.remove("scroll-lock");
     }
     //document.querySelector(".contact p ion-icon").classList.toggle("hidden");
 }
 
-function getinput(input){
-    user.text = input.value;
-    input.value = "";
-    if(user.text === ""){
-        alert("Digite alguma coisa!");
-    }
+function getinputFocus(input){
+    //input.value === "";
+    input.removeAttribute("value");
     document.querySelector(".input-box :last-child").classList.remove("hidden");
     if(user.type === "message"){
         document.querySelector(".subtittle").innerHTML = `Enviando para ${user.to} (publicamente)`
-    } 
+    }
+}
+
+function getinputBlur(input){
+    user.text = input.value;
+    document.querySelector(".input-box :last-child").classList.add("hidden");
+    input.setAttribute("value", "Escreva aqui...");
 }
 
 function selectcontact(contact){
     if(contact.lastChild.getAttribute("class") === "hidden md hydrated"){
         let uncheck = document.querySelector(".contact .check");
-        uncheck.classList.remove("check");
-        uncheck.classList.add("hidden");
+        if(uncheck !== null){
+            uncheck.classList.remove("check");
+            uncheck.classList.add("hidden");
+        }
         contact.lastChild.classList.remove("hidden");
         contact.lastChild.classList.add("check");
         user.to = contact.getAttribute("name");
