@@ -156,7 +156,9 @@ function getinputFocus(input){
     input.removeAttribute("value");
     document.querySelector(".input-box :last-child").classList.remove("hidden");
     if(user.type === "message"){
-        document.querySelector(".subtittle").innerHTML = `Enviando para ${user.to} (publicamente)`
+        document.querySelector(".subtittle").innerHTML = `Enviando para ${user.to} (publicamente)`;
+    }else{
+        document.querySelector(".subtittle").innerHTML = `Enviando para ${user.to} (reservadamente)`;
     }
     input.addEventListener('keydown', function(e){
         if(e.key === "Enter"){
