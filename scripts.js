@@ -1,16 +1,30 @@
 let user = {name: "", from: "", to: "", text: "", type: "", time: ""};
-login();
+
 
 //funçôes de login
 
+function inputLogFocus(log){
+    log.removeAttribute("value");
+}
+
+function inputLogBlur(log){
+    user.name = log.value;
+    log.setAttribute("value", "Digite seu nome");
+}
+
+
 function login (){
-    const promise = axios.get("https://mock-api.driven.com.br/api/v6/uol/participants");
-    promise.then(userLogin);
-    promise.catch(serverError);
+    if(user.name === ""){
+        alert("Digite um nome válido!");
+    }else{
+        document.querySelector(".login-chat").classList.add("hidden");
+        const promise = axios.get("https://mock-api.driven.com.br/api/v6/uol/participants");
+        promise.then(userLogin);
+        promise.catch(serverError);
+    }   
 }
 
 function userLogin(){
-    user = {name: prompt("Digite o seu nome")};
     user.from = user.name;
     selectcontact(document.querySelector(".contact p"));
     user.type = "message";

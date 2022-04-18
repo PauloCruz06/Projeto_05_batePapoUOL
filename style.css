@@ -5,6 +5,46 @@ body{
     background-color: #F3F3F3;
 }
 
+.login-chat{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #FFFFFF;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 2;
+}
+
+.login-chat > img{
+    width: 130px;
+    height: 92px;
+    object-fit: cover;
+    padding-top: 72px;
+}
+
+.login-chat input{
+    width: 260px;
+    height: 34px;
+    margin-top: 90px;
+    margin-bottom: 20px;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    font-family: 'roboto';
+    font-weight: 400;
+    font-size: 14px;
+    color: #AEAEAE;
+}
+
+.login-chat button{
+    width: 90px;
+    height: 30px;
+}
+
 .top{
     width: 100%;
     height: 80px;
@@ -19,7 +59,7 @@ body{
     left: 0px;
 }
 
-img{
+.top > img{
     width: 75px;
     height: 53px;
     object-fit: cover;
@@ -52,10 +92,13 @@ img{
     font-size: 14px;
     font-weight: 400;
     color: #000000;
+    overflow-wrap: break-word;
 }
 
 .message > p{
-    margin: 12px 0px 12px 10px;
+    width: 100%;
+    height: auto;
+    margin: 12px 10px 12px 0px;  
 }
 
 .message b {
