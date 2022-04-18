@@ -136,9 +136,9 @@ function sendMessage(){
     promiseSend.catch(messageError);
     const box = document.querySelector(".conteiner");
     if(user.type === "message"){
-        box.innerHTML += `<div class="message"><p><light>${user.time}</light> <b>${user.from}</b> para <b>${user.to}</b>: ${user.text}</p></div>`
+        box.innerHTML += `<div class="message"><p>Carregando...</p></div>`
     } else{
-        box.innerHTML += `<div class="message type-private"><p><light>${user.time}</light> <b>${user.from}</b> para <b>${user.to}</b>: ${user.text}</p></div>`
+        box.innerHTML += `<div class="message type-private"><p>Carregando...</p></div>`
     }
 }
 
