@@ -203,6 +203,7 @@ body{
     align-items: center;
     background-color: #FFFFFF;
     z-index: 2;
+    overflow-y: scroll;
 }
 
 .box{
@@ -222,7 +223,6 @@ body{
 .select-conteiner{
     width: 100%;
     height: auto;
-    overflow-y: scroll;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;

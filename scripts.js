@@ -55,8 +55,9 @@ function setParticipants(part){
 }
 
 function userStatus(){
-    axios.post("https://mock-api.driven.com.br/api/v6/uol/status", user);
-    console.log("Status: Ok");
+    const promiseStatus = axios.post("https://mock-api.driven.com.br/api/v6/uol/status", user);
+    promiseStatus.then(console.log("Status: Ok"));
+    promiseStatus.catch(messageError);
 }
 
 
@@ -117,7 +118,7 @@ function userError(error){
 }
 
 function messageError(){
-    alert("Não foi possível enviar essa mensagem, entre novamente");
+    alert("Não foi possível enviar, entre novamente");
     window.location.reload();
 }
 
@@ -132,7 +133,7 @@ function sendMessage(){
     document.querySelector(".input-box").innerHTML = '<input onfocus="getinputFocus(this)" onblur="getinputBlur(this)" type="text" value="Escreva aqui..."/><div class="subtittle hidden"></div>'
     const promiseSend = axios.post("https://mock-api.driven.com.br/api/v6/uol/messages", user);
     promiseSend.then();
-    promiseSend.catch();
+    promiseSend.catch(messageError);
     const box = document.querySelector(".conteiner");
     if(user.type === "message"){
         box.innerHTML += `<div class="message"><p><light>${user.time}</light> <b>${user.from}</b> para <b>${user.to}</b>: ${user.text}</p></div>`
@@ -185,7 +186,7 @@ function selectcontact(contact){
         contact.lastChild.classList.add("check");
         user.to = contact.getAttribute("name");
     }else{
-        user.to = "Todos";
+        user.to = contact.getAttribute("name");
     }
 }
 
