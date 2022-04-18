@@ -1,4 +1,4 @@
-let user = {name: "", from: "", to: "", text: "", type: "", time: ""};
+let user = {name: "", from: "", to: "Todos", text: "", type: "message", time: ""};
 
 
 //funçôes de login
@@ -32,9 +32,7 @@ function login (){
 
 function userLogin(){
     user.from = user.name;
-    selectcontact(document.querySelector(".contact p"));
-    user.type = "message";
-    //selectvisibility(document.querySelector(".visibility p"));
+    //user.type = "message";
     const promiseLogin = axios.post("https://mock-api.driven.com.br/api/v6/uol/participants", user);
     promiseLogin.then(setInterval(getParticipants, 10000));
     promiseLogin.then(setInterval(userStatus, 4000));
@@ -86,9 +84,12 @@ function setMessages(mess){
         }else if(mess.data[i].type === "status"){
             document.querySelector(".conteiner").innerHTML += `<div class="message type-status"><p><light>(${mess.data[i].time})</light> <b>${mess.data[i].from}</b> ${mess.data[i].text}<p></div>`;
         }else{
-            document.querySelector(".conteiner").innerHTML += `<div class="message type-private"><p><light>(${mess.data[i].time})</light> <b>${mess.data[i].from}</b> para <b>${mess.data[i].to}</b>: ${mess.data[i].text}<p></div>`;
+            if(mess.data[i].from === user.name || mess.data[i].to === user.name || mess.data[i].to === "Todos"){
+                document.querySelector(".conteiner").innerHTML += `<div class="message type-private"><p><light>(${mess.data[i].time})</light> <b>${mess.data[i].from}</b> para <b>${mess.data[i].to}</b>: ${mess.data[i].text}<p></div>`;
+            }else{
+                continue;
+            }
         }
-        
     }
     user.time = mess.data[arrmax-1].time;
     document.querySelector (".conteiner > .message:last-child").scrollIntoView();
@@ -186,15 +187,18 @@ function selectcontact(contact){
     }
 }
 
-/*function selectvisibility(visibility){
-    if(visibility.lastChild.getAttribute("class") === "hidden md hydrated"){
+function selectvisibility(visibility){
+    if(visibility.lastChild.getAttribute("class") === "hidden md hydrated" || "md hydrated hidden"){
         let uncheck = document.querySelector(".visibility .check");
-        uncheck.classList.remove("check");
-        uncheck.classList.add("hidden");
+        if(uncheck !== null){
+            uncheck.classList.remove("check");
+            uncheck.classList.add("hidden");
+        }
         visibility.lastChild.classList.remove("hidden");
         visibility.lastChild.classList.add("check");
-        user.to = visibility.getAttribute("name");
+        user.type = visibility.getAttribute("name");
+        console.log(user.type);
     }else{
-        user.to = "message";
+        user.type = visibility.getAttribute("name");
     }
-}*/
+}
