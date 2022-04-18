@@ -5,6 +5,12 @@ let user = {name: "", from: "", to: "", text: "", type: "", time: ""};
 
 function inputLogFocus(log){
     log.removeAttribute("value");
+    log.addEventListener('keydown', function(e){
+        if(e.key === "Enter"){
+           user.name = log.value;
+           login();
+        }
+     }, false);
 }
 
 function inputLogBlur(log){
@@ -143,16 +149,20 @@ function openMenu(){
         menu.classList.add("hidden");
         document.querySelector("body").classList.remove("scroll-lock");
     }
-    //document.querySelector(".contact p ion-icon").classList.toggle("hidden");
 }
 
 function getinputFocus(input){
-    //input.value === "";
     input.removeAttribute("value");
     document.querySelector(".input-box :last-child").classList.remove("hidden");
     if(user.type === "message"){
         document.querySelector(".subtittle").innerHTML = `Enviando para ${user.to} (publicamente)`
     }
+    input.addEventListener('keydown', function(e){
+        if(e.key === "Enter"){
+           user.text = input.value;
+           sendMessage();
+        }
+     }, false);
 }
 
 function getinputBlur(input){
